@@ -16,7 +16,7 @@ set tabstop=8                " 设置tab键的宽度
 syntax keyword Keyword and or not to
 
 syntax match scOperator ":"
-syntax match scKEY "\(r\|[a-z][-a-z]*[a-z0-9]\)\ze\s*=\s*[[(]\?"
+syntax match scKEY "\(t\|ts\|s\|cl\|tsc\|desc\|tscd\|ipc\|fi\|ft\|loc\|cpc\|ap\|in\|aee\|caee\|at\|ag\|addr\|province\|city\|dn\|dn\|pr\|ad\|dd\)\ze\s*:\s*[[(]\?"
 syntax match scIPC "\<\([A-HY]\|[A-HY]\d\{2}\|[A-HY]\d\{2}[A-Z]\|[A-HY]\d\{2}[A-Z]\d\{1,4}/\?\|[A-HY]\d\{2}[A-Z]\d\{1,4}/\d\{1,5}\)[/A-Z0-9]\@!"
 syntax match scComment /#.*/
 syntax region scString matchgroup=scQuote start=/"/ end=/"/
