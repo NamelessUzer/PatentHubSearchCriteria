@@ -1,14 +1,14 @@
-augroup filetype_SearchCriteria
+augroup filetype_PatentHubSearchCriteria
     autocmd!
     " nnoremap <localleader>b :call Beauty()<cr>
-    " nnoremap <localleader>o :call SearchCriteria#JoinLinesWithOR()<cr>
-    " nnoremap <localleader>s :call SearchCriteria#SplitLineWithOR()<cr>
-    " nnoremap <localleader>i :call SearchCriteria#SortIPC()<cr>
-    " nnoremap <localleader>e :call SearchCriteria#GetElements()<cr>
+    " nnoremap <localleader>o :call PatentHubSearchCriteria#JoinLinesWithOR()<cr>
+    " nnoremap <localleader>s :call PatentHubSearchCriteria#SplitLineWithOR()<cr>
+    " nnoremap <localleader>i :call PatentHubSearchCriteria#SortIPC()<cr>
+    " nnoremap <localleader>e :call PatentHubSearchCriteria#GetElements()<cr>
     " 从检索式生成检索要素（去除括号， and or not = 等字符)
-    " nnoremap <localleader>c :call SearchCriteria#Copy_oneline()<cr>
-    " nnoremap <localleader>f :call SearchCriteria#GenerateSCFromList()<cr>
-    " nnoremap <localleader>F :call SearchCriteria#GenerateListFromSC()<cr>
+    " nnoremap <localleader>c :call PatentHubSearchCriteria#Copy_oneline()<cr>
+    " nnoremap <localleader>f :call PatentHubSearchCriteria#GenerateSCFromList()<cr>
+    " nnoremap <localleader>F :call PatentHubSearchCriteria#GenerateListFromSC()<cr>
 
     " for Wubi input method
     " iabbrev 巨 and
@@ -37,7 +37,7 @@ function! s:PrettyLine(line)
     return l:line
 endfunction
 
-function! SearchCriteria#Beauty()
+function! PatentHubSearchCriteria#Beauty()
     let l:saveCursor = getpos(".")
     let l:unnamed = getreg('"')
     let l:lines = getline(1, '$')
@@ -52,7 +52,7 @@ function! SearchCriteria#Beauty()
     unlet l:lines
 endfunction
 
-function! SearchCriteria#Copy_oneline()
+function! PatentHubSearchCriteria#Copy_oneline()
     let l:lines = getline(1, '$')
     call map(l:lines, 's:PrettyLine(v:val)')
     let l:string = join(l:lines, "\n")
@@ -60,12 +60,12 @@ function! SearchCriteria#Copy_oneline()
     let l:string = substitute(l:string, '[\(\[]\zs\_s\+', "", "g")
     let l:string = substitute(l:string, '\_s\+\ze[\)\]]', "", "g")
     let @+ = substitute(l:string, '^\_s\+\|\_s\+$', "", "g")
-    echom "Oneline-SearchCriteria has been copied to clipboard!"
+    echom "Oneline-PatentHubSearchCriteria has been copied to clipboard!"
     unlet l:lines
 endfunction
 
 
-function! SearchCriteria#JoinLinesWithOR() range
+function! PatentHubSearchCriteria#JoinLinesWithOR() range
     let l:saveCursor = getpos(".")
     let l:unnamed = getreg('"')
     if a:firstline ==# a:lastline
@@ -95,7 +95,7 @@ function! SearchCriteria#JoinLinesWithOR() range
 endfunction
 
 
-function! SearchCriteria#SplitLineWithOR() range
+function! PatentHubSearchCriteria#SplitLineWithOR() range
     let l:saveCursor = getpos(".")
     let l:unnamed = getreg('"')
     let l:_indent = repeat(" ", indent(a:firstline))
@@ -115,7 +115,7 @@ function! SearchCriteria#SplitLineWithOR() range
     unlet l:unnamed
 endfunction
 
-function! SearchCriteria#SortIPC() range
+function! PatentHubSearchCriteria#SortIPC() range
     let l:savePos = getpos(".")
     let l:unnamed = getreg('"')
     let l:_indent = repeat(" ", indent(a:firstline))
@@ -137,7 +137,7 @@ function! SearchCriteria#SortIPC() range
     unlet l:unnamed
 endfunction
 
-function! SearchCriteria#GenerateSCFromList()
+function! PatentHubSearchCriteria#GenerateSCFromList()
     let l:unnamed = getreg('"')
     let l:lines = getline(1, "$")
     call filter(l:lines, 'v:val !~ "^\\s*\\d\\|隐藏\\|不公开\\|^\\s*$"')
@@ -158,7 +158,7 @@ function! SearchCriteria#GenerateSCFromList()
     unlet l:unnamed
 endfunction
 
-function! SearchCriteria#GenerateListFromSC()
+function! PatentHubSearchCriteria#GenerateListFromSC()
     let l:save_register_plus = @z
     let l:save_register_unnamed = @"
     execute 'normal! gg/ap\s*=\s*(/e' . "\<cr>" . '"zyi)ggdG'
@@ -172,7 +172,7 @@ function! SearchCriteria#GenerateListFromSC()
     unlet l:lines
 endfunction
 
-function! SearchCriteria#GetElements() range
+function! PatentHubSearchCriteria#GetElements() range
     let l:lines = getline(a:firstline, a:lastline)
     let l:lines = map(l:lines, 'substitute(v:val, "\\(t\\|ts\\|s\\|cl\\|tsc\\|desc\\|tscd\\|ipc\\|fi\\|ft\\|loc\\|cpc\\|ap\\|in\\|aee\\|caee\\|at\\|ag\\|addr\\|province\\|city\\|dn\\|dn\\|pr\\|ad\\|dd))\\s*:\\s*", " ", "g")')
     " 删除字段名称
