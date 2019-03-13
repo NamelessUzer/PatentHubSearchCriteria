@@ -16,7 +16,7 @@ set tabstop=8                " 设置tab键的宽度
 syntax keyword Keyword and or not to
 
 syntax match scOperator ":"
-syntax match scKEY "\(t\|ts\|s\|cl\|tsc\|desc\|tscd\|ipc\|fi\|ft\|loc\|cpc\|ap\|in\|aee\|caee\|at\|ag\|addr\|province\|city\|dn\|dn\|pr\|ad\|dd\)\ze\s*:\s*[[(]\?"
+syntax match scKEY "\(ti\|eti\|cti\|ab\|eab\|cab\|cl\|ecl\|d\|eds\|ap\|fap\|addr\|aee\|caee\|in\|ag\|at\|n\|dn\|an\|pr\|dd\|ddy\|ddm\|ad\|ady\|adm\|pctDate\|ipc\|ipc-section\|ipc-class\|ipc-subclass\|ipc-group\|ipc-subgroup\|ipc-main\|ipcm-section\|ipcm-class\|ipcm-subclass\|ipcm-group\|ipcm-subgroup\|uspc\|uspcc\|fi\|ft\|loc\|cpc\|ls\|currentStatus\|type\|cc\|acc\|kc\|lang\|apt\|ap-zip\|country\|province\|city\|aeet\|caeet\|agc\|legalTag\|legalEvent\|maintainYears\|citedCount\|citingCount\|level\|judgment\.date\|judgment\.title\|judgment\.caseId\|judgment\.court\|judgment\.province\|judgment\.city\|judgment\.accuser\|judgment\.defendant\)\ze\s*:\s*[[(]\?"
 syntax match scIPC "\<\([A-HY]\|[A-HY]\d\{2}\|[A-HY]\d\{2}[A-Z]\|[A-HY]\d\{2}[A-Z]\d\{1,4}/\?\|[A-HY]\d\{2}[A-Z]\d\{1,4}/\d\{1,5}\)[/A-Z0-9]\@!"
 syntax match scComment /#.*/
 syntax region scString matchgroup=scQuote start=/"/ end=/"/

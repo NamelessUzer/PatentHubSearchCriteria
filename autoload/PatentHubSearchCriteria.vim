@@ -115,7 +115,7 @@ function! PatentHubSearchCriteria#SplitLineWithOR() range
     unlet l:unnamed
 endfunction
 
-function! incoPatSearchCriteria#SortInBracket() range
+function! PatentHubSearchCriteria#SortInBracket() range
     let l:savePos = getpos(".")
     let l:unnamed = getreg('"')
     execute "normal! vi)\<esc>"
@@ -182,7 +182,7 @@ endfunction
 
 function! PatentHubSearchCriteria#GetElements() range
     let l:lines = getline(a:firstline, a:lastline)
-    let l:lines = map(l:lines, 'substitute(v:val, "\\(t\\|ts\\|s\\|cl\\|tsc\\|desc\\|tscd\\|ipc\\|fi\\|ft\\|loc\\|cpc\\|ap\\|in\\|aee\\|caee\\|at\\|ag\\|addr\\|province\\|city\\|dn\\|dn\\|pr\\|ad\\|dd))\\s*:\\s*", " ", "g")')
+    let l:lines = map(l:lines, 'substitute(v:val, "\\(ti\\|eti\\|cti\\|ab\\|eab\\|cab\\|cl\\|ecl\\|d\\|eds\\|ap\\|fap\\|addr\\|aee\\|caee\\|in\\|ag\\|at\\|n\\|dn\\|an\\|pr\\|dd\\|ddy\\|ddm\\|ad\\|ady\\|adm\\|pctDate\\|ipc\\|ipc-section\\|ipc-class\\|ipc-subclass\\|ipc-group\\|ipc-subgroup\\|ipc-main\\|ipcm-section\\|ipcm-class\\|ipcm-subclass\\|ipcm-group\\|ipcm-subgroup\\|uspc\\|uspcc\\|fi\\|ft\\|loc\\|cpc\\|ls\\|currentStatus\\|type\\|cc\\|acc\\|kc\\|lang\\|apt\\|ap-zip\\|country\\|province\\|city\\|aeet\\|caeet\\|agc\\|legalTag\\|legalEvent\\|maintainYears\\|citedCount\\|citingCount\\|level\\|judgment\\.date\\|judgment\\.title\\|judgment\\.caseId\\|judgment\\.court\\|judgment\\.province\\|judgment\\.city\\|judgment\\.accuser\\|judgment\\.defendant\\)\\s*:\\s*", " ", "g")')
     " 删除字段名称
     let l:lines = map(l:lines, 'substitute(v:val, "\\c\\s*\\<\\(and\\|or\\|not\\)\\>\\+\\s*", " ", "g")')
     " 删除and or not
