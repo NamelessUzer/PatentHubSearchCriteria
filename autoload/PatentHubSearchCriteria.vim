@@ -25,7 +25,7 @@ augroup filetype_PatentHubSearchCriteria
 augroup END
 
 function! s:PrettyLine(line)
-    let l:line = substitute(a:line, '\c\([a-z0-9-]\+\)\s*=\s*', '\L\1 = ', 'g')
+    let l:line = substitute(a:line, '\c\([a-z0-9-]\+\)\s*:\s*', '\L\1 : ', 'g')
     let l:line = substitute(l:line, '\c\S\zs\s*\<\(and\|or\|to\)\>\s*\ze\S', ' \L\1 ', 'g')
     let l:line = substitute(l:line, '\c\_^\s*\zs\<\(and\|not\)\>\s*', '\L\1 ', 'g')
     let l:line = substitute(l:line, '\c\_^\s*\zs\<\(or\)\>\s*', '\L\1  ', 'g')
@@ -153,8 +153,8 @@ function! PatentHubSearchCriteria#GenerateSCFromList()
     call map(l:lines, 'substitute(v:val, "^[ \"]*\\|[ \"]*$", "\"", "g")')
     call sort(uniq(l:lines, "i"), "i")
     execute("%delete")
-    let l:l0 = "ap = (" . join(l:lines, ' or ') . ")"
-    let l:l1 = "aee = (" . join(l:lines, ' or ') . ")"
+    let l:l0 = "ap : (" . join(l:lines, ' or ') . ")"
+    let l:l1 = "aee : (" . join(l:lines, ' or ') . ")"
     let l:l01 = "(" . l:l0 . " or " . l:l1 . ")"
     call setline(1, l:l01)
     call setpos(".", [0, 1, 1, 0])
@@ -169,7 +169,7 @@ endfunction
 function! PatentHubSearchCriteria#GenerateListFromSC()
     let l:save_register_plus = @z
     let l:save_register_unnamed = @"
-    execute 'normal! gg/ap\s*=\s*(/e' . "\<cr>" . '"zyi)ggdG'
+    execute 'normal! gg/ap\s*:\s*(/e' . "\<cr>" . '"zyi)ggdG'
     let l:lines = sort(uniq(split(trim(@z), '\c\(\s*\<or\>\s*\)\+'), 'i'), "i")
     call map(l:lines, 'substitute(v:val, "\\w\\+", "\\L\\u&", "g")')
     call setline(1, l:lines)
